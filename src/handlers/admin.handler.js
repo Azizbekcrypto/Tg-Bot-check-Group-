@@ -145,23 +145,33 @@ export function registerAdminHandlers(bot, adminId) {
 
 
   // 📊 Statistika komandasi
+  // 📊 Statistika komandasi
   bot.onText(/\/stats/, (msg) => {
     if (msg.from?.id.toString() !== adminId) return;
 
     const users = getUsers();
     const contents = getContents();
 
+    // Umumiy son
     const userCount = users.length;
     const contentCount = contents.length;
 
+    // 🔹 Oxirgi 1 oy ichida qo‘shilgan userlarni sanaymiz
+    const oneMonthAgo = new Date();
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
+    const monthlyUsers = users.filter(u => new Date(u.joinedAt) >= oneMonthAgo).length;
+
     const statsMessage = `
-  📊 <b>Statistika</b>
-  
-  👥 Foydalanuvchilar soni: <b>${userCount}</b>
-  🗂 Saqlangan contentlar soni: <b>${contentCount}</b>
-      `;
+📊 <b>Statistika</b>
+
+👥 Umumiy foydalanuvchilar: <b>${userCount}</b>
+🗓 Oxirgi 1 oyda qo‘shilgan: <b>${monthlyUsers}</b>
+🗂 Saqlangan contentlar: <b>${contentCount}</b>
+  `;
 
     bot.sendMessage(msg.chat.id, statsMessage, { parse_mode: "HTML" });
   });
+
 
 }
