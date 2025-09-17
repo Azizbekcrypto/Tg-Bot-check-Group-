@@ -1,0 +1,21 @@
+{
+  "type": "module",
+  "name": "tg-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "dev": "node --watch src/main.js"
+  },
+  "keywords": [],
+  "author": "Azizbek",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "node-telegram-bot-api": "^0.66.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.1"
+  }
+}
